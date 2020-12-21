@@ -16,19 +16,24 @@ class CreateClientsTable extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->nulleable();
+            $table->foreign('user_id')->references('id')->on('users');
             $table->string('name');
             $table->string('surname');
-            $table->enum('gender', ["Masculino", "Femenino", "No definido"])->nulleable();
-            $table->integer('ranking');
             $table->string('street');
             $table->string('floor');
             $table->integer('phone1');
             $table->integer('phone2');
             $table->string('email')->nulleable();
+            $table->integer('dni');
             $table->integer('cuit');
             $table->unsignedBigInteger('city_id');
+            // $table->foreign('city_id')->references('id')->on('cities');
+            $table->enum('gender', ["Masculino", "Femenino", "No definido"])->nulleable();
+            $table->integer('ranking');
             $table->unsignedBigInteger('created_by');
+            $table->foreign('created_by')->references('id')->on('users');
             $table->unsignedBigInteger('modified_by');            
+            $table->foreign('modified_by')->references('id')->on('users');
             $table->timestamps();
         });
     }
