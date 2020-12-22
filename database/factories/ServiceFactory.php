@@ -29,8 +29,8 @@ class ServiceFactory extends Factory
             'unique_price' => rand(500,15200),
             'description' => $this->faker->text,
             'subscription'  => rand(0,9),
-            'tipe'  => rand(1,3),
-            'servicec_id' => rand(1,20),
+            'type'  => rand(1,3),
+            'servicec_id' => null,
         ];
     }
 }

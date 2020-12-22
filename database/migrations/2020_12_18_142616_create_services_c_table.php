@@ -18,7 +18,7 @@ class CreateServicesCTable extends Migration
             $table->string('name');
             $table->string('image');
             $table->text('description');
-            $table->tinyInteger('tipe')->default(0);
+            $table->tinyInteger('type')->default(0);
             $table->string('title');
             $table->string('subtitle')->nulleable();
             $table->text('descriptiontitle')->nulleable();

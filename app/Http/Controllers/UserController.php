@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegisterRequest;
+use Carbon\Carbon;
 use Validator;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -10,33 +13,34 @@ use Parser;
 
 class UserController extends Controller
 {
-    public function register(Request $request)
+    public function register(RegisterRequest $request): \Illuminate\Http\JsonResponse
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|confirmed',
-        ]);
-        if ($validator->fails()) {
-            return response()->json(['error'=>$validator->errors()], 401);
-        }
-        $input = $request->all();
-        $input['password'] = bcrypt($input['password']);
-        $user = User::create($input);
-        $success['token'] =  $user->createToken('MyApp')->accessToken;
-        $success['name'] =  $user->name;
-        return response()->json($success, 200);
+        $request->merge(['password' => bcrypt($request->input('password'))]);
+        $user = User::create($request->except(['password_confirmation']));
+
+        $personalAccessToken = $user->createToken('MyApp');
+        $tokenData = [
+            'access_token' => $personalAccessToken->accessToken,
+            'token_type' => 'Bearer',
+            'expires_at' => Carbon::parse($personalAccessToken->token->expires_at)->toDateTimeString()
+        ];
+
+        return response()->json($tokenData);
     }
-    public function login(Request $request){
-        if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
+
+    public function login(LoginRequest $request){
+        if(Auth::attempt($request->only(['email', 'password']))){
             $user = Auth::user();
-            $success['token'] =  $user->createToken('Password Token')->accessToken;
-            $success['name'] = $user->name;
-            $success['email'] = $user->email;
-            return response()->json($success, 200);
+            $personalAccessToken = $user->createToken('Password Token');
+            $tokenData = [
+                'access_token' => $personalAccessToken->accessToken,
+                'token_type' => 'Bearer',
+                'expires_at' => Carbon::parse($personalAccessToken->token->expires_at)->toDateTimeString()
+            ];
+            return response()->json($tokenData);
         }
         else{
-            return response()->json(['error'=>'Unauthorised'], 401);
+            return response()->json(['error'=>'El usuario y la contraseña son incorrectos'], 401);
         }
     }
     public function logout(Request $request){
@@ -52,6 +56,6 @@ class UserController extends Controller
     {
         $user = Auth::user();
         //$newUser = User::with(['city' => function($query)])->
-        return response()->json($user, 200);
+        return response()->json( $user, 200);
     }
 }
