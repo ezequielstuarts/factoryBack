@@ -16,7 +16,7 @@ class UserController extends Controller
     public function register(RegisterRequest $request): \Illuminate\Http\JsonResponse
     {
         $request->merge(['password' => bcrypt($request->input('password'))]);
-        $user = User::create($request->except(['password_confirmation']));
+        $user = User::create($request->only(['name', 'email', 'password']));
 
         $personalAccessToken = $user->createToken('MyApp');
         $tokenData = [
