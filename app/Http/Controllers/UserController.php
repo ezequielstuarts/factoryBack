@@ -2,104 +2,56 @@
 
 namespace App\Http\Controllers;
 
-use App\Helpers\BasicValidator;
-use App\Helpers\JWTAuth;
-use App\Models\User;
-use App\Models\users;
-use Exception;
+use Validator;
 use Illuminate\Http\Request;
-use Illuminate\Validation\Validator;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Parser;
 
 class UserController extends Controller
 {
-    
-    public function register(Request $request){
-        
-        $json = $request->input('json',null);
-
-        $params_array = json_decode($json,true);
-        try{
-
-            BasicValidator::isValueNull($params_array['username']);
-            BasicValidator::isValueNull($params_array['email']);
-            BasicValidator::isValueNull($params_array['password']);
-            //guardar usuario
-            $userExists = users::where([
-                'email' => $params_array['email']
-            ])->first();
-            /*
-            Se verifica si ya existe un usario registrado con el email recibido
-            */
-            if(!is_null($userExists)){
-                throw new Exception('Un usuario con ese email ya se encuentra registrado','400');
-            }
-            /*
-            Se crea el usuario nuevo y se almacena
-            */
-            $user = new users();
-            $user->username = $params_array['username'];
-            $user->email = $params_array['email'];
-            $user->password = $params_array['password'];
-            $user->status = 'DEFAULT';
-            $user->erased = 0;
-        
-            $user->save();
-
-            $response = [
-                'status' => 'success',
-                'code'  => '200',
-                'message' => 'Se almaceno correctamente el usuario'
-            ];
-
-        }catch(Exception $e){
-           $response = [
-               'status' => 'error',
-               'message' => $e->getMessage(),
-               'code' => $e->getCode()
-           ];
+    public function register(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|confirmed',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->errors()], 401);
         }
-        /*
-        Se verifica que el codigo no sea 0 ya que no es un codigo HTTP valido
-        */
-        if($response['code'] == 0){
-            $response['code'] = 400;
-        }
-
-        return response()->json($response,$response['code']);
+        $input = $request->all();
+        $input['password'] = bcrypt($input['password']);
+        $user = User::create($input);
+        $success['token'] =  $user->createToken('MyApp')->accessToken;
+        $success['name'] =  $user->name;
+        return response()->json($success, 200);
     }
-
     public function login(Request $request){
-        $jwtAuth = new JWTAuth();
-        //datos recibidos
-        $json = $request->input('json',null);
-        
-        $params_array = json_decode($json,true);
-
-        BasicValidator::isValueNull($params_array['email']);
-        BasicValidator::isValueNull($params_array['password']);
-        // $email = 'admin@admin.com';
-        // $password = 'admin';
-        try{
-            $signup = $jwtAuth->signup($params_array['email'],$params_array['password']);
-            // var_dump($signup);die;
-        }catch(Exception $e){
-            $response = [
-                'message' => $e->getMessage(),
-                'code' => $e->getCode()
-            ];
+        if(Auth::attempt(['email' => request('email'), 'password' => request('password')])){
+            $user = Auth::user();
+            $success['token'] =  $user->createToken('Password Token')->accessToken;
+            $success['name'] = $user->name;
+            $success['email'] = $user->email;
+            return response()->json($success, 200);
         }
-        return response()->json($signup,200);
+        else{
+            return response()->json(['error'=>'Unauthorised'], 401);
+        }
     }
+    public function logout(Request $request){
+        $value = $request->bearerToken();
+        $id = (new Parser())->parse($value)->getHeader('jti');
+        $token = $request->user()->tokens->find($id);
+        $token->revoke();
 
-    public function update(Request $request){
-        $token = $request->header('Authorization');
-        $jwtAuth = new JWTAuth();
-        $checkToken = $jwtAuth->checkToken($token);
-        if($checkToken) {
-            return User::all();
-        } else {
-            echo '<h1>El token es incorrecto</h1>';
-        }
-        die();
+        $response = 'You have been logged out';
+        return response()->json($response, 200);
+     }
+    public function details(Request $request)
+    {
+        $user = Auth::user();
+        //$newUser = User::with(['city' => function($query)])->
+        return response()->json($user, 200);
     }
 }

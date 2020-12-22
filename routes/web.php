@@ -13,12 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/test', 'TestController@getOrm');
-   
+
 //routes
 Route::post('/api/register','UserController@register');
 Route::post('/api/login','UserController@login');
 Route::post('/api/update','UserController@update');
+*/
