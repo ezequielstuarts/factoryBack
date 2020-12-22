@@ -27,7 +27,6 @@ class CreateClientsTable extends Migration
             $table->integer('dni');
             $table->integer('cuit');
             $table->unsignedBigInteger('city_id');
-            // $table->foreign('city_id')->references('id')->on('cities');
             $table->enum('gender', ["Masculino", "Femenino", "No definido"])->nulleable();
             $table->integer('ranking');
             $table->unsignedBigInteger('created_by');
