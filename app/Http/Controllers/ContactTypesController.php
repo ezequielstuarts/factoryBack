@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Auth;
 
 class ContactTypesController extends Controller
 {
+    public function index(){
+        return response()->json(ContactType::all());
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -39,22 +43,12 @@ class ContactTypesController extends Controller
      * @param  \App\Models\ContactType  $contact_type
      * @return \Illuminate\Http\Response
      */
-    public function show(ContactType $contact_type)
+    public function show($id)
     {
-        // dd($contact_type);
-        $test = ContactType::find($contact_type);
-        return $test;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\ContactType  $contact_type
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ContactType $contact_type)
-    {
-        //
+        /*
+        TODO MANEJO DE ERRORS (UNAUTHORIZED)
+        */
+        return response()->json(ContactType::findOrFail($id));
     }
 
     /**
@@ -64,9 +58,16 @@ class ContactTypesController extends Controller
      * @param  \App\Models\ContactType  $contact_type
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ContactType $contact_type)
+    public function update(Request $request, $id)
     {
-        //
+        try{
+            $contact = ContactType::findOrFail($id);
+            $contact->name = $request->name;
+            $contact->save();
+        }catch(Exception $e){
+            return response()->json($e->getMessage(),500);
+        }
+        return response()->json($contact);
     }
 
     /**
@@ -75,8 +76,14 @@ class ContactTypesController extends Controller
      * @param  \App\Models\ContactType  $contact_type
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ContactType $contact_type)
+    public function destroy($id)
     {
-        //
+        try{
+            $contact = ContactType::findOrFail($id);
+            $contact->delete();
+        }catch(Exception $e){
+            return response()->json($e->getMessage(),500);
+        }
+        return response()->json(null,204);
     }
 }
