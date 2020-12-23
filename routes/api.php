@@ -3,6 +3,7 @@
 use App\Http\Controllers\ContactTypesController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\StatusController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,8 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::Resource('client', ClientController::class)->except(['create', 'edit']);
     
     Route::post('logout', [UserController::class, 'logout']);
+
+    Route::Resource('status', StatusController::class)->except(['create', 'edit']);
 });
 // Route::apiResource('/api/register','UserController@register');
 // Route::apiResource('/api/login','UserController@login');
