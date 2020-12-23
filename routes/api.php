@@ -24,7 +24,7 @@ Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
 Route::group(['middleware' => 'auth:api'], function(){
     Route::post('details', [UserController::class, 'details']);
-    Route::Resource('contactType', ContactTypesController::class)->except(['create','index']);
+    Route::Resource('contactType', ContactTypesController::class)->except(['create']);
     Route::post('logout', [UserController::class, 'logout']);
 });
 // Route::apiResource('/api/register','UserController@register');
