@@ -23,7 +23,7 @@ class CreateServicesTable extends Migration
             $table->text('description')->nulleable();
             $table->tinyInteger('subscription')->default(0);
             $table->integer('type')->nulleable();
-            $table->unsignedBigInteger('servicec_id');
+            $table->unsignedBigInteger('servicec_id')->nullable();
             $table->foreign('servicec_id')->references('id')->on('services_c');
             $table->timestamps();
         });

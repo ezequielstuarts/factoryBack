@@ -13,6 +13,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call([
+            TokenSeed::class,
+        ]);
         // \App\Models\User::factory(10)->create();
         \App\Models\ServiceC::factory(10)->create();
         \App\Models\Service::factory(20)->create();
