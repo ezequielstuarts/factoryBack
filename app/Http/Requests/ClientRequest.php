@@ -21,19 +21,36 @@ class ClientRequest extends FormRequest
      *
      * @return array
      */
+    public function messages()
+    {
+        return [
+            'name.required' => 'El nombre es requerido',
+            'surname.required' => 'El apellido es requerido',
+            'adress.required' => 'La direccion es requerida',
+            'phone1.required' => 'El telefono es requerido',
+            'phone1.numeric' => 'El teléfono debe ser numerico',
+            'email.required' => 'El email es requerido',
+            'email.email' => 'El email no tiene formato válido',
+            'email.unique' => 'El email ya existe',
+            'dni.numeric' => 'El DNI debe ser numerico',
+            'dni.unique' => 'Ya existe un DNI con ese valor',
+            'cuit.numeric' => 'El CUIT debe ser numerico',
+        ];
+    }
+    
     public function rules()
     {
         return [
             'name' => 'required',
             'surname' => 'required',
-            'street' => 'required',
-            'floor' => 'numeric',
+            'adress' => 'required',
             'phone1' => 'required|numeric',
             'phone2' => 'numeric',
-            'email' => 'required|email',
-            'dni' => 'required|numeric',
-            'cuit' => 'required|numeric',
-            'ranking' => 'required|numeric'
+            'email' => 'required|email|unique:clients,email',
+            'dni' => 'numeric|unique:clients,dni',
+            'cuit' => 'numeric',
+            'ranking' => 'numeric'
         ];
     }
+
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ContactTypeRequest;
 use Validator;
 use App\Models\ContactType;
 use Exception;
@@ -20,14 +21,8 @@ class ContactTypesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(ContactTypeRequest $request)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:Contact_types',
-        ]);
-        if ($validator->fails()) {
-            return response()->json(['error'=>$validator->errors()], 400);
-        }
         $input = $request->all();
         try{
             $contact_type = ContactType::create($input);

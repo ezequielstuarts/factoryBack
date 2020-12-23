@@ -28,7 +28,6 @@ class ClientController extends Controller
      */
     public function store(ClientRequest $request)
     {
-        dd($request);
         $newClient = $request->all();
         try{
             $client = Client::create($newClient);
@@ -44,7 +43,7 @@ class ClientController extends Controller
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function show(Client $client)
+    public function show($id)
     {
         return response()->json(Client::findOrFail($id));
     }
@@ -56,9 +55,15 @@ class ClientController extends Controller
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(Request $request, $id)
     {
-        //
+        try{
+            $client = Client::findOrFail($id);
+            $client->fill($request->input())->save();
+        }catch(Exception $e){
+            return response()->json($e->getMessage(),500);
+        }
+        return response()->json($client);
     }
 
     /**
@@ -67,8 +72,14 @@ class ClientController extends Controller
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Client $client)
+    public function destroy($id)
     {
-        //
+        try{
+            $client = Client::findOrFail($id);
+            $client->delete();
+        }catch(Exception $e){
+            return response()->json($e->getMessage(),500);
+        }
+        return response()->json(null,204);
     }
 }
