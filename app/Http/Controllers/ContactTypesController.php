@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Validator;
-use App\Models\Contact_type;
+use App\Models\ContactType;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,14 +27,14 @@ class ContactTypesController extends Controller
      */
     public function create()
     {
-       
+
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(Request $request)
     {
@@ -46,7 +46,7 @@ class ContactTypesController extends Controller
         }
         $input = $request->all();
         try{
-            $contact_type = Contact_type::create($input);
+            $contact_type = ContactType::create($input);
         }catch(Exception $e){
             return response()->json($e->getMessage(),500);
         }
@@ -56,10 +56,10 @@ class ContactTypesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Contact_type  $contact_type
+     * @param  \App\Models\ContactType  $contact_type
      * @return \Illuminate\Http\Response
      */
-    public function show(Contact_type $contact_type)
+    public function show(ContactType $contact_type)
     {
         //
     }
@@ -67,10 +67,10 @@ class ContactTypesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Contact_type  $contact_type
+     * @param  \App\Models\ContactType  $contact_type
      * @return \Illuminate\Http\Response
      */
-    public function edit(Contact_type $contact_type)
+    public function edit(ContactType $contact_type)
     {
         //
     }
@@ -79,10 +79,10 @@ class ContactTypesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Contact_type  $contact_type
+     * @param  \App\Models\ContactType  $contact_type
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contact_type $contact_type)
+    public function update(Request $request, ContactType $contact_type)
     {
         //
     }
@@ -90,10 +90,10 @@ class ContactTypesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Contact_type  $contact_type
+     * @param  \App\Models\ContactType  $contact_type
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contact_type $contact_type)
+    public function destroy(ContactType $contact_type)
     {
         //
     }

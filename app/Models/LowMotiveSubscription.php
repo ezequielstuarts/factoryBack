@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Subcription_service extends Model
+class LowMotiveSubscription extends Model
 {
     use HasFactory;
 }

@@ -5,7 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Low_motive extends Model
+class ContactType extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name'
+    ];
 }

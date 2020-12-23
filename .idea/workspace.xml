@@ -3,7 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="91189cf2-c381-4462-8090-0fe051e6cbd9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ContactTypesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ContactTypesController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Contact_type.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ContactType.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Contact_type_clients.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ContactTypeClients.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Low_motive.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/LowMotive.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Low_motive_subscription.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/LowMotiveSubscription.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Subcription_service.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/SubscriptionService.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
