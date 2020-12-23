@@ -11,26 +11,6 @@ use Illuminate\Support\Facades\Auth;
 class ContactTypesController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -39,7 +19,7 @@ class ContactTypesController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'name' => 'required|unique:Contact_types',
         ]);
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()], 400);
@@ -61,7 +41,9 @@ class ContactTypesController extends Controller
      */
     public function show(ContactType $contact_type)
     {
-        //
+        // dd($contact_type);
+        $test = ContactType::find($contact_type);
+        return $test;
     }
 
     /**
