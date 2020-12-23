@@ -60,6 +60,12 @@ class ContactTypesController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|unique:contact_types,name',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['error'=>$validator->errors()], 400);
+        }
         try{
             $contact = ContactType::findOrFail($id);
             $contact->name = $request->name;

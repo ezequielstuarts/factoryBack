@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ContactTypesController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ClientController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,9 +23,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('register', [UserController::class, 'register']);
 Route::post('login', [UserController::class, 'login']);
+
 Route::group(['middleware' => 'auth:api'], function(){
+    
     Route::post('details', [UserController::class, 'details']);
-    Route::Resource('contactType', ContactTypesController::class)->except(['create']);
+    
+    Route::Resource('contactType', ContactTypesController::class)->except(['create', 'edit']);
+    
+    Route::Resource('client', ClientController::class)->except(['create', 'edit']);
+    
     Route::post('logout', [UserController::class, 'logout']);
 });
 // Route::apiResource('/api/register','UserController@register');
