@@ -42,18 +42,15 @@ class ContactTypesController extends Controller
             'name' => 'required',
         ]);
         if ($validator->fails()) {
-            return response()->json(['error'=>$validator->errors()], 401);
+            return response()->json(['error'=>$validator->errors()], 400);
         }
         $input = $request->all();
-        $requestToken = $request->bearerToken(); 
-        // dd($request->bearerToken());
-        // $authorized = Auth::user();
         try{
             $contact_type = Contact_type::create($input);
         }catch(Exception $e){
             return response()->json($e->getMessage(),500);
         }
-        return response()->json($e->getMessage(),200);
+        return response()->json($contact_type);
     }
 
     /**
