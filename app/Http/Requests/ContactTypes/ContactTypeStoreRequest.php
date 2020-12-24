@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\ContactTypes;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SericeCRequest extends FormRequest
+class ContactTypeStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class SericeCRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,10 +21,18 @@ class SericeCRequest extends FormRequest
      *
      * @return array
      */
+    public function messages()
+    {
+        return [
+            'name.required' => 'El nombre es requerido',
+            'name.unique' => 'Ese nombre ya existe'
+        ];
+    }
+
     public function rules()
     {
         return [
-            //
+            'name' => 'required|unique:Contact_types',
         ];
     }
 }

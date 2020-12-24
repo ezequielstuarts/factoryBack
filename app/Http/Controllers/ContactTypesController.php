@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ContactTypeRequest;
+use App\Http\Requests\ContactTypes\ContactTypeStoreRequest;
+use App\Http\Requests\ContactTypes\ContactTypeUpdateRequest;
 use Validator;
 use App\Models\ContactType;
 use Exception;
@@ -12,7 +13,8 @@ use Illuminate\Support\Facades\Auth;
 class ContactTypesController extends Controller
 {
     public function index(){
-        return response()->json(ContactType::all());
+        $contact = ContactType::all();
+        return response()->json($contact);
     }
 
     /**
@@ -21,7 +23,7 @@ class ContactTypesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(ContactTypeRequest $request)
+    public function store(ContactTypeStoreRequest $request)
     {
         $input = $request->all();
         $contact_type = ContactType::create($input);
@@ -40,7 +42,8 @@ class ContactTypesController extends Controller
         /*
         TODO MANEJO DE ERRORS (UNAUTHORIZED)
         */
-        return response()->json(ContactType::findOrFail($id));
+        $contact = ContactType::findOrFail($id);
+        return response()->json($contact);
     }
 
     /**
@@ -50,15 +53,8 @@ class ContactTypesController extends Controller
      * @param  \App\Models\ContactType  $contact_type
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ContactTypeUpdateRequest $request, $id)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:contact_types,name',
-        ]);
-        if ($validator->fails()) {
-            return response()->json(['error'=>$validator->errors()], 400);
-        }
-
         $contact = ContactType::findOrFail($id);
         $contact->name = $request->name;
         $contact->save();

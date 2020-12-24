@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\ContactTypes;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ServiceRequest extends FormRequest
+class ContactTypeUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,10 +21,18 @@ class ServiceRequest extends FormRequest
      *
      * @return array
      */
+    public function messages()
+    {
+        return [
+            'name.required' => 'El nombre es requerido',
+            'name.unique' => 'Ese nombre ya existe'
+        ];
+    }
+
     public function rules()
     {
         return [
-            'name' => 'required'
+            'name' => 'required|unique:contact_types,name',
         ];
     }
 }

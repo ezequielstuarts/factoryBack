@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ServiceRequest;
+use App\Http\Requests\Service\ServiceStoreRequest;
 use App\Models\Service;
 use Illuminate\Http\Request;
 
@@ -24,7 +24,7 @@ class ServiceController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ServiceRequest $request)
+    public function store(ServiceStoreRequest $request)
     {
         $newService = $request->all();
 

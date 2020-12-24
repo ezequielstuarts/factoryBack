@@ -1,10 +1,12 @@
 ## Factory Backend
 
-#Install
+##Install
 
-1)- composer update
-2)- php artisan migrate:fresh
-3)- php artisan passport:install
+```
+composer update
+php artisan migrate:fresh
+php artisan passport:install
+```
 
 ## Standard 
 
@@ -14,4 +16,9 @@ Tablas: SnakeCase + Plural. Ej: users, user_roles.
 Campos: SnakeCase. Ej: user_id.
 Foreign BelongsTo: Nombre de modelo en singular + SnakeCase.
 
+
+
+## Route Api Documentation
+
+[Documentacion Postaman Api](https://www.getpostman.com/collections/6c1d74b271425dfb1b31)
 
