@@ -20,7 +20,7 @@ class RegisterTest extends TestCase
 
         $response = $this->post('/api/register', $user);
 
-        $response->assertStatus(401);
+        $response->assertStatus(422);
     }
 
     public function testSuccessRegister()

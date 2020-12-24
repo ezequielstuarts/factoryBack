@@ -20,8 +20,8 @@ class CreateServicesCTable extends Migration
             $table->text('description');
             $table->tinyInteger('type')->default(0);
             $table->string('title');
-            $table->string('subtitle')->nulleable();
-            $table->text('descriptiontitle')->nulleable();
+            $table->string('subtitle')->nullable();
+            $table->text('descriptiontitle')->nullable();
             $table->tinyInteger('hidden')->default(0);
             $table->timestamps();
         });

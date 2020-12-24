@@ -3,9 +3,19 @@
   <component name="ChangeListManager">
     <list default="true" id="91189cf2-c381-4462-8090-0fe051e6cbd9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Exceptions/Handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/Handler.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Requests/ClientRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/ClientRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Traits/ApiResponser.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Traits/ApiResponser.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ClientController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ClientController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Requests/Client/ClientUpdateRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Requests/Client/ClientUpdateRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/City.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/City.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Client.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Client.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Province.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Province.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_18_142616_create_services_c_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_18_142616_create_services_c_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_18_143425_create_services_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_18_143425_create_services_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_21_185331_create_clients_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_21_185331_create_clients_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_21_192817_create_provinces_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_21_192817_create_provinces_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2020_12_21_195219_create_subscriptions_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2020_12_21_195219_create_subscriptions_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Feature/RegisterTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Feature/RegisterTest.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +167,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="E:/Development/APIGenerator/backend" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../gefco" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -210,7 +220,14 @@
       <option name="project" value="LOCAL" />
       <updated>1608730533026</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Fix Handler.php Exception messages.">
+      <created>1608741996267</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1608741996267</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,6 +248,7 @@
     <MESSAGE value="Basic OAuth" />
     <MESSAGE value="Unit Test + Fix Models" />
     <MESSAGE value="Fix Names" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix Names" />
+    <MESSAGE value="Fix Handler.php Exception messages." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix Handler.php Exception messages." />
   </component>
 </project>

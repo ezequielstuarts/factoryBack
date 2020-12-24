@@ -15,23 +15,23 @@ class CreateClientsTable extends Migration
     {
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id')->nulleable();
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('name');
             $table->string('surname');
             $table->string('adress');
-            $table->string('floor')->nulleable();
-            $table->integer('phone1');
-            $table->integer('phone2')->nulleable();
-            $table->string('email')->nulleable();
-            $table->integer('dni')->nulleable();
-            $table->integer('cuit')->nulleable();
+            $table->string('floor')->nullable();
+            $table->string('phone1');
+            $table->string('phone2')->nullable();
+            $table->string('email')->nullable();
+            $table->integer('dni')->nullable();
+            $table->integer('cuit')->nullable();
             $table->unsignedBigInteger('city_id');
-            $table->enum('gender', ["Masculino", "Femenino", "No definido"])->nulleable();
-            $table->integer('ranking')->nulleable();
-            $table->unsignedBigInteger('created_by')->nulleable();
+            $table->enum('gender', ["Masculino", "Femenino", "No definido"])->nullable();
+            $table->integer('ranking')->nullable();
+            $table->unsignedBigInteger('created_by')->nullable();
             $table->foreign('created_by')->references('id')->on('users');
-            $table->unsignedBigInteger('modified_by')->nulleable();            
+            $table->unsignedBigInteger('modified_by')->nullable();
             $table->foreign('modified_by')->references('id')->on('users');
             $table->timestamps();
         });

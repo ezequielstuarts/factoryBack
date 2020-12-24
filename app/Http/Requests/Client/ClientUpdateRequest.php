@@ -13,7 +13,7 @@ class ClientUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,15 @@ class ClientUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => '',
+            'surname' => '',
+            'adress' => '',
+            'phone1' => 'numeric',
+            'phone2' => 'numeric',
+            'email' => 'email|unique:clients,email',
+            'dni' => 'numeric|unique:clients,dni',
+            'cuit' => 'numeric',
+            'ranking' => 'numeric'
         ];
     }
 }

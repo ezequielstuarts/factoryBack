@@ -14,6 +14,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -50,10 +51,11 @@ class Handler extends ExceptionHandler
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Throwable  $exception
-     * @return \Illuminate\Http\Response
+     * @return false|\Illuminate\Http\Response|string
      */
     public function render($request, Throwable $exception)
     {
+        //$response = get_class($exception);
         $response = $this->handleException($request, $exception);
 
         return $response;
@@ -71,6 +73,10 @@ class Handler extends ExceptionHandler
         }
 
         if ($exception instanceof AuthenticationException) {
+            return $this->unauthenticated($request, $exception);
+        }
+
+        if ($exception instanceof RouteNotFoundException) {
             return $this->unauthenticated($request, $exception);
         }
 
@@ -114,13 +120,10 @@ class Handler extends ExceptionHandler
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Illuminate\Auth\AuthenticationException  $exception
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    protected function unauthenticated($request, AuthenticationException $exception)
+    protected function unauthenticated($request, $exception)
     {
-        if ($this->isFrontend($request)) {
-            return redirect()->guest('login');
-        }
         return $this->errorResponse('No autenticado.', 401);
     }
 

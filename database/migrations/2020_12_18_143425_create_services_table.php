@@ -16,13 +16,13 @@ class CreateServicesTable extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('image_service')->nulleable();
-            $table->decimal('monthly_price', 10,2)->nulleable();
-            $table->tinyInteger('months_change')->nulleable();
-            $table->decimal('unique_price', 10,2)->nulleable();
-            $table->text('description')->nulleable();
+            $table->string('image_service')->nullable();
+            $table->decimal('monthly_price', 10,2)->nullable();
+            $table->tinyInteger('months_change')->nullable();
+            $table->decimal('unique_price', 10,2)->nullable();
+            $table->text('description')->nullable();
             $table->tinyInteger('subscription')->default(0);
-            $table->integer('type')->nulleable();
+            $table->integer('type')->nullable();
             $table->unsignedBigInteger('servicec_id')->nullable();
             $table->foreign('servicec_id')->references('id')->on('services_c');
             $table->timestamps();
