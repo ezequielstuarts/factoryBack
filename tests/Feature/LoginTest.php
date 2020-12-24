@@ -40,7 +40,7 @@ class LoginTest extends TestCase
             ['create-servers']
         );
 
-        $response = $this->post('/api/details');
+        $response = $this->post('/api/me');
 
         $response->assertStatus(200);
     }

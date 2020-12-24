@@ -26,7 +26,7 @@ class ClientUpdateRequest extends FormRequest
         return [
             'name' => '',
             'surname' => '',
-            'adress' => '',
+            'address' => '',
             'phone1' => 'numeric',
             'phone2' => 'numeric',
             'email' => 'email|unique:clients,email',

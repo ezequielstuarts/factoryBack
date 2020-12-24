@@ -52,7 +52,7 @@ class UserController extends Controller
         $response = 'You have been logged out';
         return response()->json($response, 200);
      }
-    public function details(Request $request)
+    public function me(Request $request)
     {
         $user = Auth::user();
         //$newUser = User::with(['city' => function($query)])->

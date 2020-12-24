@@ -26,7 +26,7 @@ class ClientStoreRequest extends FormRequest
         return [
             'name.required' => 'El nombre es requerido',
             'surname.required' => 'El apellido es requerido',
-            'adress.required' => 'La direccion es requerida',
+            'address.required' => 'La direccion es requerida',
             'phone1.required' => 'El telefono es requerido',
             'phone1.numeric' => 'El teléfono debe ser numerico',
             'email.required' => 'El email es requerido',
@@ -43,7 +43,7 @@ class ClientStoreRequest extends FormRequest
         return [
             'name' => 'required',
             'surname' => 'required',
-            'adress' => 'required',
+            'address' => 'required',
             'phone1' => 'required|numeric',
             'phone2' => 'numeric',
             'email' => 'required|email|unique:clients,email',

@@ -29,7 +29,7 @@ Route::post('login', [UserController::class, 'login']);
 
 Route::group(['middleware' => 'auth:api'], function(){
     
-    Route::post('details', [UserController::class, 'details']);
+    Route::post('me', [UserController::class, 'me']);
     
     Route::Resource('contactType', ContactTypesController::class)->except(['create', 'edit']);
     
