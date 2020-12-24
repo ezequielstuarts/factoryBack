@@ -27,11 +27,9 @@ class ServiceController extends Controller
     public function store(ServiceRequest $request)
     {
         $newService = $request->all();
-        try{
-            $service = Service::create($newService);
-        }catch(Exception $e){
-            return response()->json($e->getMessage(),500);
-        }
+
+        $service = Service::create($newService);
+
         return response()->json($service);
     }
 
@@ -55,12 +53,10 @@ class ServiceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try{
-            $service = Service::findOrFail($id);
-            $service->fill($request->input())->save();
-        }catch(Exception $e){
-            return response()->json($e->getMessage(),500);
-        }
+
+        $service = Service::findOrFail($id);
+        $service->fill($request->input())->save();
+
         return response()->json($service);
     }
 
@@ -72,12 +68,8 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
-        try{
-            $service = Service::findOrFail($id);
-            $service->delete();
-        }catch(Exception $e){
-            return response()->json($e->getMessage(),500);
-        }
+        $service = Service::findOrFail($id);
+        $service->delete();
         return response()->json(null,204);
     }
 }

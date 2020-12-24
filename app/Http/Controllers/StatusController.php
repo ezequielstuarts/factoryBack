@@ -34,11 +34,8 @@ class StatusController extends Controller
             return response()->json(['error'=>$validator->errors()], 400);
         }
         $input = $request->all();
-        try{
-            $status = Status::create($input);
-        }catch(Exception $e){
-            return response()->json($e->getMessage(),500);
-        }
+        $status = Status::create($input);
+
         return response()->json($status);
     }
 
@@ -68,18 +65,14 @@ class StatusController extends Controller
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()], 400);
         }
-        try{
-            $status = Status::findOrFail($id);
-            if(!is_null($request->name)){
-                $status->name = $request->name;
-            }
-            if(!is_null($request->active)){
-                $status->active = $request->active;
-            }
-            $status->save();
-        }catch(Exception $e){
-            return response()->json($e->getMessage(),500);
+        $status = Status::findOrFail($id);
+        if(!is_null($request->name)){
+            $status->name = $request->name;
         }
+        if(!is_null($request->active)){
+            $status->active = $request->active;
+        }
+        $status->save();
         return response()->json($status);
     }
 
@@ -91,12 +84,8 @@ class StatusController extends Controller
      */
     public function destroy($id)
     {
-        try{
-            $contact = Status::findOrFail($id);
-            $contact->delete();
-        }catch(Exception $e){
-            return response()->json($e->getMessage(),500);
-        }
+        $contact = Status::findOrFail($id);
+        $contact->delete();
         return response()->json(null,204);
     }
 }

@@ -24,11 +24,8 @@ class ContactTypesController extends Controller
     public function store(ContactTypeRequest $request)
     {
         $input = $request->all();
-        try{
-            $contact_type = ContactType::create($input);
-        }catch(Exception $e){
-            return response()->json($e->getMessage(),500);
-        }
+        $contact_type = ContactType::create($input);
+ 
         return response()->json($contact_type);
     }
 
@@ -61,13 +58,11 @@ class ContactTypesController extends Controller
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()], 400);
         }
-        try{
-            $contact = ContactType::findOrFail($id);
-            $contact->name = $request->name;
-            $contact->save();
-        }catch(Exception $e){
-            return response()->json($e->getMessage(),500);
-        }
+
+        $contact = ContactType::findOrFail($id);
+        $contact->name = $request->name;
+        $contact->save();
+
         return response()->json($contact);
     }
 
@@ -79,12 +74,9 @@ class ContactTypesController extends Controller
      */
     public function destroy($id)
     {
-        try{
-            $contact = ContactType::findOrFail($id);
-            $contact->delete();
-        }catch(Exception $e){
-            return response()->json($e->getMessage(),500);
-        }
+        $contact = ContactType::findOrFail($id);
+        $contact->delete();
+
         return response()->json(null,204);
     }
 }

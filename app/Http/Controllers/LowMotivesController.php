@@ -33,11 +33,9 @@ class LowMotivesController extends Controller
             return response()->json(['error'=>$validator->errors()], 400);
         }
         $input = $request->all();
-        try{
-            $lowMotive = LowMotive::create($input);
-        }catch(Exception $e){
-            return response()->json($e->getMessage(),500);
-        }
+ 
+        $lowMotive = LowMotive::create($input);
+
         return response()->json($lowMotive);
     }
 
