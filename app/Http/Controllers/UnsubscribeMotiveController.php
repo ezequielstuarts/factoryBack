@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UnsubscribeMotive\UnsubscribeMotiveStoreRequest;
 use App\Models\UnsubscribeMotive;
 use Exception;
 use Illuminate\Http\Request;
 
-class UnsubscribeMotivesController extends Controller
+class UnsubscribeMotiveController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,39 +26,33 @@ class UnsubscribeMotivesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UnsubscribeMotiveStoreRequest $request)
     {
-         $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:unsubscribe_motives',
-        ]);
-        if ($validator->fails()) {
-            return response()->json(['error'=>$validator->errors()], 400);
-        }
         $input = $request->all();
- 
-        $lowMotive = UnsubscribeMotive::create($input);
+        $motive = UnsubscribeMotive::create($input);
 
-        return response()->json($lowMotive);
+        return response()->json($motive);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\UnsubscribeMotive  $lowMotive
+     * @param  \App\Models\UnsubscribeMotive  $motive
      * @return \Illuminate\Http\Response
      */
-    public function show(UnsubscribeMotive $lowMotive)
+    public function show($id)
     {
-        //
+        $motive = UnsubscribeMotive::all($id);
+        return response()->json($motive);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\UnsubscribeMotive  $lowMotive
+     * @param  \App\Models\UnsubscribeMotive  $motive
      * @return \Illuminate\Http\Response
      */
-    public function edit(UnsubscribeMotive $lowMotive)
+    public function edit(UnsubscribeMotive $motive)
     {
         //
     }
@@ -66,10 +61,10 @@ class UnsubscribeMotivesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\UnsubscribeMotive  $lowMotive
+     * @param  \App\Models\UnsubscribeMotive  $motive
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, UnsubscribeMotive $lowMotive)
+    public function update(Request $request, UnsubscribeMotive $motive)
     {
         //
     }
@@ -77,10 +72,10 @@ class UnsubscribeMotivesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\UnsubscribeMotive  $lowMotive
+     * @param  \App\Models\UnsubscribeMotive  $motive
      * @return \Illuminate\Http\Response
      */
-    public function destroy(UnsubscribeMotive $lowMotive)
+    public function destroy(UnsubscribeMotive $motive)
     {
         //
     }

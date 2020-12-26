@@ -41,6 +41,6 @@ Route::group(['middleware' => 'auth:api'], function(){
 
     Route::Resource('status', StatusController::class)->except(['create', 'edit']);
 
-    Route::Resource('lowMotive', UnsubscribeMotive::class)->except(['create', 'edit']);
+    Route::Resource('unsubscribeMotive', UnsubscribeMotive::class)->except(['create', 'edit']);
     
 });
