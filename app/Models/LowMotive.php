@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class LowMotive extends Model
+class UnsubscribeMotive extends Model
 {
     use HasFactory;
     
-    protected $table = 'low_motives';
+    protected $table = 'unsubscribe_motives';
 
     protected $fillable = [
         'name'

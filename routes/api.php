@@ -5,7 +5,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\StatusController;
-use App\Models\LowMotive;
+use App\Models\UnsubscribeMotive;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -41,5 +41,6 @@ Route::group(['middleware' => 'auth:api'], function(){
 
     Route::Resource('status', StatusController::class)->except(['create', 'edit']);
 
-    Route::Resource('lowMotive', LowMotive::class)->except(['create', 'edit']);
+    Route::Resource('lowMotive', UnsubscribeMotive::class)->except(['create', 'edit']);
+    
 });

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLowMotivesSubscriptionsTable extends Migration
+class CreateUnsubscribeMotivesSubscriptionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateLowMotivesSubscriptionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('low_motives_subscriptions', function (Blueprint $table) {
+        Schema::create('unsubscribe_motives_subscriptions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('subscription_id');
             $table->foreign('subscription_id')->references('id')->on('subscriptions');
-            $table->unsignedBigInteger('low_motives_id');
-            $table->foreign('low_motives_id')->references('id')->on('low_motives');
+            $table->unsignedBigInteger('unsubscribe_motives_id');
+            $table->foreign('unsubscribe_motives_id')->references('id')->on('unsubscribe_motives');
         });
     }
 
@@ -29,6 +29,6 @@ class CreateLowMotivesSubscriptionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('low_motives_subscriptions');
+        Schema::dropIfExists('unsubscribe_motives_subscriptions');
     }
 }

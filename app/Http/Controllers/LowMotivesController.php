@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LowMotive;
+use App\Models\UnsubscribeMotive;
 use Exception;
 use Illuminate\Http\Request;
 
-class LowMotivesController extends Controller
+class UnsubscribeMotivesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,8 @@ class LowMotivesController extends Controller
      */
     public function index()
     {
-        return response()->json(LowMotive::all());
+        $motive = UnsubscribeMotive::all();
+        return response()->json($motive);
     }
 
     /**
@@ -27,14 +28,14 @@ class LowMotivesController extends Controller
     public function store(Request $request)
     {
          $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:low_motives',
+            'name' => 'required|unique:unsubscribe_motives',
         ]);
         if ($validator->fails()) {
             return response()->json(['error'=>$validator->errors()], 400);
         }
         $input = $request->all();
  
-        $lowMotive = LowMotive::create($input);
+        $lowMotive = UnsubscribeMotive::create($input);
 
         return response()->json($lowMotive);
     }
@@ -42,10 +43,10 @@ class LowMotivesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\LowMotive  $lowMotive
+     * @param  \App\Models\UnsubscribeMotive  $lowMotive
      * @return \Illuminate\Http\Response
      */
-    public function show(LowMotive $lowMotive)
+    public function show(UnsubscribeMotive $lowMotive)
     {
         //
     }
@@ -53,10 +54,10 @@ class LowMotivesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\LowMotive  $lowMotive
+     * @param  \App\Models\UnsubscribeMotive  $lowMotive
      * @return \Illuminate\Http\Response
      */
-    public function edit(LowMotive $lowMotive)
+    public function edit(UnsubscribeMotive $lowMotive)
     {
         //
     }
@@ -65,10 +66,10 @@ class LowMotivesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\LowMotive  $lowMotive
+     * @param  \App\Models\UnsubscribeMotive  $lowMotive
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, LowMotive $lowMotive)
+    public function update(Request $request, UnsubscribeMotive $lowMotive)
     {
         //
     }
@@ -76,10 +77,10 @@ class LowMotivesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\LowMotive  $lowMotive
+     * @param  \App\Models\UnsubscribeMotive  $lowMotive
      * @return \Illuminate\Http\Response
      */
-    public function destroy(LowMotive $lowMotive)
+    public function destroy(UnsubscribeMotive $lowMotive)
     {
         //
     }
