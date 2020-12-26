@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Status\StatusStoreRequest;
+use App\Http\Requests\Status\StatusUpdateRequest;
 use Validator;
 use App\Models\Status;
 use Exception;
@@ -14,8 +16,10 @@ class StatusController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
-        return response()->json(Status::all());
+    public function index()
+    {
+        $status = Status::all();
+        return response()->json($status);
     }
 
     /**
@@ -24,15 +28,8 @@ class StatusController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StatusStoreRequest $request)
     {
-        // dd('hola');
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|unique:status',
-        ]);
-        if ($validator->fails()) {
-            return response()->json(['error'=>$validator->errors()], 400);
-        }
         $input = $request->all();
         $status = Status::create($input);
 
@@ -47,7 +44,8 @@ class StatusController extends Controller
      */
     public function show($id)
     {
-        return response()->json(Status::findOrFail($id));
+        $status = Status::findOrFail($id);
+        return response()->json($status);
     }
 
     /**
@@ -57,14 +55,8 @@ class StatusController extends Controller
      * @param  \App\Models\Status  $status
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StatusUpdateRequest $request, $id)
     {
-        $validator = Validator::make($request->all(), [
-            'name' => 'unique:status,name',
-        ]);
-        if ($validator->fails()) {
-            return response()->json(['error'=>$validator->errors()], 400);
-        }
         $status = Status::findOrFail($id);
         if(!is_null($request->name)){
             $status->name = $request->name;
@@ -84,8 +76,8 @@ class StatusController extends Controller
      */
     public function destroy($id)
     {
-        $contact = Status::findOrFail($id);
-        $contact->delete();
+        $status = Status::findOrFail($id);
+        $status->delete();
         return response()->json(null,204);
     }
 }

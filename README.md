@@ -1,10 +1,15 @@
-## Factory Backend
+<h1 align="center">## Factory Backend Laravel</h1>
+<div align="center"></div>
 
-##Install
+## Install
 
 ```
 composer update
+```
+```
 php artisan migrate:fresh
+```
+```
 php artisan passport:install
 ```
 
@@ -15,8 +20,6 @@ Controladores: Capitalize + Singular. Ej: ClientController
 Tablas: SnakeCase + Plural. Ej: users, user_roles.
 Campos: SnakeCase. Ej: user_id.
 Foreign BelongsTo: Nombre de modelo en singular + SnakeCase.
-
-
 
 ## Route Api Documentation
 

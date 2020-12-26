@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Service\ServiceStoreRequest;
+use App\Http\Requests\Service\ServiceUpdateRequest;
 use App\Models\Service;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,8 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        return response()->json(Service::all());
+        $service = Service::with('service_c')->get();
+        return response()->json($service);
     }
 
     /**
@@ -41,7 +43,8 @@ class ServiceController extends Controller
      */
     public function show($id)
     {
-        return response()->json(Service::findOrFail($id));
+        $service = Service::with('service_c')->findOrFail($id);
+        return response()->json($service);
     }
 
     /**
@@ -51,7 +54,7 @@ class ServiceController extends Controller
      * @param  \App\Models\Service  $service
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ServiceUpdateRequest $request, $id)
     {
 
         $service = Service::findOrFail($id);

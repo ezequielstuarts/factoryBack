@@ -4,7 +4,7 @@ namespace App\Http\Requests\Service;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ServiceStoreRequest extends FormRequest
+class ServiceUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,7 @@ class ServiceStoreRequest extends FormRequest
     {
         return [
             'name.required' => 'El nombre es requerido',
-            'name.unique' => 'Ese servicio ya existe'
+            'name.unique' => 'Ese nombre ya existe'
         ];
     }
 

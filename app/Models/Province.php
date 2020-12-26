@@ -10,6 +10,8 @@ class Province extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name', 'province_id', 'lat', 'lon'
     ];
+
+    public $timestamps = false;
 }

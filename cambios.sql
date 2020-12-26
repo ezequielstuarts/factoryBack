@@ -4,7 +4,7 @@ USE api_rest_laravel
 CREATE TABLE users{
     id int auto_increment not null,
     name VARCHAR(255),
-    surname VARCHAR(50),
+    last_name VARCHAR(50),
     role VARCHAR(20),
     email VARCHAR(255),
     password VARCHAR(255),

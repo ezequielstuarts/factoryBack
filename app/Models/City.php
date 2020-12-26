@@ -14,6 +14,8 @@ class City extends Model
         'province_id'
     ];
 
+    public $timestamps = false;
+
     public function province() {
         return $this->belongsTo('App\Models\Province');
     }

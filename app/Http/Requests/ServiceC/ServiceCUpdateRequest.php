@@ -4,7 +4,7 @@ namespace App\Http\Requests\ServiceC;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SericeCStoreRequest extends FormRequest
+class ServiceCUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,10 +21,17 @@ class SericeCStoreRequest extends FormRequest
      *
      * @return array
      */
+    public function messages()
+    {
+        return [
+            'name.unique' => 'Ese servicio ya existe'
+        ];
+    }
+
     public function rules()
     {
         return [
-            //
+            'name' => 'unique:services_c,name'
         ];
     }
 }

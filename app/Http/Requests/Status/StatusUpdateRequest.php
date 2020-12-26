@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Service;
+namespace App\Http\Requests\Status;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ServiceStoreRequest extends FormRequest
+class StatusUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -16,23 +16,18 @@ class ServiceStoreRequest extends FormRequest
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function messages()
     {
         return [
-            'name.required' => 'El nombre es requerido',
-            'name.unique' => 'Ese servicio ya existe'
+            'name.required' => 'El nombre del estado es requerido',
+            'name.unique' => 'Ese estado ya existe',
         ];
     }
 
     public function rules()
     {
         return [
-            'name' => 'required|unique:services,name'
+            'name' => 'required|unique:status,name',
         ];
     }
 }

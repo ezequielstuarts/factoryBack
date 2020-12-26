@@ -73,8 +73,8 @@ class ClientTest extends TestCase
         $city = City::create(['name' => 'City Test', 'province_id' => $province->id]);
         $client = Client::create([
             'user_id' => $user->id,
-            'name' => $faker->text,
-            'surname' => $faker->text,
+            'name' => $faker->name,
+            'last_name' => $faker->lastname,
             'address' => $faker->text,
             'phone1' => $faker->phonenumber,
             'email' => $faker->email,
@@ -108,8 +108,8 @@ class ClientTest extends TestCase
         $city = City::create(['name' => 'City Test', 'province_id' => $province->id]);
         $client = Client::create([
             'user_id' => $user->id,
-            'name' => $faker->text,
-            'surname' => $faker->text,
+            'name' => $faker->name,
+            'last_name' => $faker->lastname,
             'address' => $faker->text,
             'phone1' => $faker->phonenumber,
             'email' => $faker->email,
@@ -143,8 +143,8 @@ class ClientTest extends TestCase
         $city = City::create(['name' => 'City Test', 'province_id' => $province->id]);
         $client = Client::create([
             'user_id' => $user->id,
-            'name' => $faker->text,
-            'surname' => $faker->text,
+            'name' => $faker->name,
+            'last_name' => $faker->lastname,
             'address' => $faker->text,
             'phone1' => $faker->phonenumber,
             'email' => $faker->email,
@@ -196,8 +196,8 @@ class ClientTest extends TestCase
         $city = City::create(['name' => 'City Test', 'province_id' => $province->id]);
         $client = Client::create([
             'user_id' => $user->id,
-            'name' => $faker->text,
-            'surname' => $faker->text,
+            'name' => $faker->name,
+            'last_name' => $faker->lastname,
             'address' => $faker->text,
             'phone1' => $faker->phonenumber,
             'email' => $faker->email,

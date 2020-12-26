@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Service;
+namespace App\Http\Requests\ServiceC;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ServiceStoreRequest extends FormRequest
+class ServiceCStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -32,7 +32,7 @@ class ServiceStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:services,name'
+            'name' => 'required|unique:services_c,name'
         ];
     }
 }

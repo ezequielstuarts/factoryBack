@@ -62,8 +62,8 @@ class ClientController extends Controller
         if ($request->has('name') && $request->input('name') != '') {
             $client->name = $request->input('name');
         }
-        if ($request->has('surname') && $request->input('surname') != '') {
-            $client->surname = $request->input('surname');
+        if ($request->has('last_name') && $request->input('last_name') != '') {
+            $client->last_name = $request->input('last_name');
         }
         if ($request->has('address') && $request->input('address') != '') {
             $client->address = $request->input('address');

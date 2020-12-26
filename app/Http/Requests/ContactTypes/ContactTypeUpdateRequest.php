@@ -24,7 +24,6 @@ class ContactTypeUpdateRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'El nombre es requerido',
             'name.unique' => 'Ese nombre ya existe'
         ];
     }
@@ -32,7 +31,7 @@ class ContactTypeUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:contact_types,name',
+            'name' => 'unique:contact_types,name',
         ];
     }
 }

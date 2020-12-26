@@ -24,9 +24,6 @@ class ClientUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => '',
-            'surname' => '',
-            'address' => '',
             'phone1' => 'numeric',
             'phone2' => 'numeric',
             'email' => 'email|unique:clients,email',

@@ -25,7 +25,7 @@ class ClientStoreRequest extends FormRequest
     {
         return [
             'name.required' => 'El nombre es requerido',
-            'surname.required' => 'El apellido es requerido',
+            'last_name.required' => 'El apellido es requerido',
             'address.required' => 'La direccion es requerida',
             'phone1.required' => 'El telefono es requerido',
             'phone1.numeric' => 'El teléfono debe ser numerico',
@@ -34,7 +34,9 @@ class ClientStoreRequest extends FormRequest
             'email.unique' => 'El email ya existe',
             'dni.numeric' => 'El DNI debe ser numerico',
             'dni.unique' => 'Ya existe un DNI con ese valor',
+            'dni.required' => 'El DNI es requerido',
             'cuit.numeric' => 'El CUIT debe ser numerico',
+            
         ];
     }
     
@@ -42,12 +44,12 @@ class ClientStoreRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'surname' => 'required',
+            'last_name' => 'required',
             'address' => 'required',
             'phone1' => 'required|numeric',
             'phone2' => 'numeric',
             'email' => 'required|email|unique:clients,email',
-            'dni' => 'numeric|unique:clients,dni',
+            'dni' => 'required|numeric|unique:clients,dni',
             'cuit' => 'numeric',
             'ranking' => 'numeric'
         ];

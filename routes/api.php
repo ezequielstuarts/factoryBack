@@ -43,6 +43,3 @@ Route::group(['middleware' => 'auth:api'], function(){
 
     Route::Resource('lowMotive', LowMotive::class)->except(['create', 'edit']);
 });
-// Route::apiResource('/api/register','UserController@register');
-// Route::apiResource('/api/login','UserController@login');
-// Route::apiResource('/api/update','UserController@update');

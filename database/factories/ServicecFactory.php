@@ -22,7 +22,7 @@ class ServicecFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
+            'name' => $this->faker->catchPhrase,
             'image' => 'http://lorempixel.com/200/200/cats/',
             'description' => $this->faker->text,
             'title' => $this->faker->text,
