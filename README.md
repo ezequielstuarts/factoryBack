@@ -1,5 +1,4 @@
 <h1 align="center">## Factory Backend Laravel</h1>
-<div align="center"></div>
 
 ## Install
 
