@@ -23,9 +23,14 @@ php artisan passport:install
 **Foreign BelongsTo:** Nombre de modelo en singular + SnakeCase.  
 
 #
-## Route Api Documentation
+## Api Documentation
+
+[Documentacion ](https://documenter.getpostman.com/view/11467590/TVt17PwK)
+
+## Route Api Documentation (json)
 
 [Documentacion Postaman Api](https://www.getpostman.com/collections/6c1d74b271425dfb1b31)
+
 
 #
 
